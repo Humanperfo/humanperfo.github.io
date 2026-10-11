@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Préparation physique à distance pour compétiteurs de tous sports. Performance is built.">
+<title>Human Performance Coaching</title>
+<style>
+/* Concept : fond noir, grandes titrailles, tuiles arrondies. Les tuiles blanches et noires reprennent le damier du compte Instagram. */
+:root{
+  --bg:#000000;
+  --surface:#111113;
+  --tile:#1d1d1f;
+  --fg:#f5f5f7;
+  --mute:#a1a1a6;
+  --faint:#86868b;
+  --line:#38383a;
+  --accent:#2997ff;
+  --accent-text:#2997ff;
+  --btn:#0071e3;
+  --btn-hover:#0077ed;
+  --on-dark:#f5f5f7;
+  --on-dark-mute:#a1a1a6;
+  --paper:#f5f5f7;
+  --paper-ink:#1d1d1f;
+  --paper-mute:#6e6e73;
+  --paper-line:#d2d2d7;
+  --seg-track:rgba(255,255,255,.12);
+  --seg-on:#636366;
+  --nav-bg:rgba(0,0,0,.78);
+  --red:#e11d1d;
+  --cyan:#0bbee6;
+  --ghost:#2c2c2e;
+  --ghost-hover:#3a3a3c;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  color-scheme:dark;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--fg);font-size:17px;line-height:1.45;-webkit-font-smoothing:antialiased}
+*,*::before,*::after{box-sizing:border-box}
+a{color:inherit}
+h1,h2,h3,p,ul{margin:0}
+ul{padding:0;list-style:none}
+h1,h2,h3{text-wrap:balance}
+.wrap{max-width:1024px;margin:0 auto;padding-inline:24px;padding-block:112px}
+.wrap-narrow{max-width:720px}
+.center{text-align:center;align-items:center}
+.stack{display:flex;flex-direction:column}
+h2{font-size:clamp(34px,5.6vw,64px);line-height:1.07;font-weight:700;letter-spacing:-.03em}
+.lead{font-size:clamp(19px,2.2vw,22px);line-height:1.38;color:var(--mute);max-width:620px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:980px;font:inherit;font-size:17px;text-decoration:none;border:0;cursor:pointer;background:var(--btn);color:#fff;transition:background .2s ease}
+.btn:hover{background:var(--btn-hover)}
+.btn-sm{min-height:34px;padding:0 16px;font-size:14px}
+.btn-ghost{background:var(--ghost);color:var(--fg)}
+.btn-ghost:hover{background:var(--ghost-hover)}
+.lnk{color:var(--accent-text);font:inherit;font-size:20px;text-decoration:none;background:none;border:0;padding:0;cursor:pointer}
+.lnk:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.tracks{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:4px;background:var(--seg-track);padding:4px;border-radius:22px}
+.seg{min-height:40px;padding:0 20px;border:0;border-radius:18px;font:inherit;font-weight:500;font-size:16px;cursor:pointer;background:transparent;color:var(--mute);transition:background .2s ease,color .2s ease}
+.seg[aria-pressed="true"],.seg[aria-selected="true"]{background:var(--seg-on);color:var(--fg);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--nav-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1024px;margin:0 auto;padding:10px 24px;display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;letter-spacing:-.01em}
+.brand i{width:26px;height:26px;border-radius:50%;background:var(--fg);color:var(--bg);display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.nav nav{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center}
+.nav nav a:not(.btn){font-size:13px;opacity:.8;text-decoration:none}
+.nav nav a:not(.btn):hover{opacity:1}
+
+/* hero */
+.hero{gap:24px;padding-block:96px 72px}
+.hero .eyebrow{font-size:21px;font-weight:600;color:var(--mute)}
+.hero h1{font-size:clamp(46px,9vw,104px);line-height:1.02;font-weight:700;letter-spacing:-.035em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:center;margin-top:8px}
+.hero-tile{margin-top:40px;width:100%;min-height:360px;background:var(--tile);border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:40px}
+.hero-tile b{font-size:clamp(110px,18vw,190px);line-height:1;font-weight:800;font-style:italic;color:var(--on-dark);letter-spacing:-.04em}
+.hero-tile span{font-size:13px;letter-spacing:.32em;color:var(--on-dark-mute);font-weight:500}
+
+.trust{border-block:1px solid var(--line)}
+.trust div{max-width:1024px;margin:0 auto;padding:22px 24px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 40px;font-size:15px;color:var(--mute);text-align:center}
+
+.alt{background:var(--surface)}
+
+/* tiles */
+.tiles{width:100%;display:flex;flex-wrap:wrap;gap:20px;text-align:left}
+.tile{flex:1 1 420px;min-width:0;min-height:340px;border-radius:28px;padding:40px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;background:var(--paper);color:var(--paper-ink)}
+.tile.dark{background:var(--tile);color:var(--on-dark)}
+.tile .tag{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--paper-mute)}
+.tile.dark .tag{color:var(--on-dark-mute)}
+.tag i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.tile .big{font-size:clamp(34px,4.6vw,52px);line-height:1.05;font-weight:700;letter-spacing:-.03em}
+.tile .sub{font-size:17px;color:var(--paper-mute)}
+.tile.dark .sub{color:var(--on-dark-mute)}
+
+/* offers */
+.panel{width:100%;border-radius:28px;padding:48px;display:flex;flex-wrap:wrap;gap:40px;text-align:left;background:var(--paper);color:var(--paper-ink)}
+.panel.dark{background:var(--tile);color:var(--on-dark)}
+.panel>div{flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.panel .meta{font-size:17px;font-weight:600;color:var(--paper-mute)}
+.panel.dark .meta,.panel.dark p{color:var(--on-dark-mute)}
+.panel h3{font-size:clamp(30px,4vw,44px);line-height:1.08;font-weight:700;letter-spacing:-.03em}
+.panel p{font-size:19px;line-height:1.45;color:var(--paper-mute)}
+.checks{display:flex;flex-direction:column;gap:14px;font-size:18px;line-height:1.4}
+.checks li{display:flex;gap:14px}
+.checks li::before{content:"";flex:none;margin-top:9px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.price{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding-top:24px;border-top:1px solid var(--paper-line)}
+.panel.dark .price{border-color:#48484a}
+.price b{font-size:28px;letter-spacing:-.02em}
+.note{font-size:15px;color:var(--mute);max-width:640px}
+
+/* for / not for */
+.fit{display:flex;flex-wrap:wrap;gap:20px}
+.fit>div{flex:1 1 420px;min-width:0;background:var(--tile);border-radius:28px;padding:44px;display:flex;flex-direction:column;gap:24px}
+.fit h3{font-size:clamp(28px,3.6vw,40px);line-height:1.1;font-weight:700;letter-spacing:-.03em}
+.fit ul{display:flex;flex-direction:column;gap:16px;font-size:19px;line-height:1.4}
+.fit .no{color:var(--mute)}
+
+/* accordions */
+.acc-list{border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:24px 0;cursor:pointer;font-size:clamp(20px,2.6vw,30px);font-weight:600;letter-spacing:-.02em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:30px;font-weight:300;line-height:1;color:var(--mute)}
+details[open] summary::after{content:"–"}
+summary small{font-size:17px;font-weight:600;color:var(--faint);margin-right:18px;letter-spacing:0}
+details p{padding:0 0 28px;font-size:19px;line-height:1.45;color:var(--mute);max-width:620px}
+details.steps p{padding-left:42px}
+
+/* about */
+.about{display:flex;flex-wrap:wrap;gap:56px;align-items:center}
+.photo{flex:1 1 280px;aspect-ratio:4/5;max-width:min(400px,100%);background:var(--ghost);border-radius:28px;display:flex;align-items:center;justify-content:center;color:var(--faint);text-align:center;padding:24px;font-weight:600;letter-spacing:.1em;font-size:14px}
+.about>div:last-child{flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.about p{font-size:21px;line-height:1.4;color:var(--mute)}
+
+/* form */
+.card{background:var(--tile);border-radius:28px;padding:40px;display:flex;flex-direction:column;gap:32px}
+.bar{height:4px;border-radius:999px;background:var(--ghost);overflow:hidden}
+.bar i{display:block;height:4px;border-radius:999px;background:var(--accent);transition:width .3s ease}
+.count{font-size:14px;color:var(--faint);font-weight:500}
+.q{font-size:clamp(26px,3.6vw,36px);font-weight:700;letter-spacing:-.025em;line-height:1.12;display:block;padding:0}
+.step{display:flex;flex-direction:column;gap:16px;border:0;margin:0;padding:0;min-width:0}
+.f{width:100%;min-height:56px;padding:14px 18px;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--fg);font:inherit;font-size:19px}
+.f::placeholder{color:var(--faint)}
+.f:focus{outline:3px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+textarea.f{min-height:130px;resize:vertical}
+.hint{font-size:15px;color:var(--faint)}
+.opts{display:flex;flex-wrap:wrap;gap:12px}
+.opt{min-height:52px;padding:0 24px;border-radius:14px;border:1px solid var(--line);font:inherit;font-weight:500;font-size:18px;cursor:pointer;background:var(--bg);color:var(--fg);transition:background .15s ease}
+.opt[aria-pressed="true"]{background:var(--btn);border-color:var(--btn);color:#fff}
+.nav-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.fine{font-size:14px;line-height:1.5;color:var(--faint)}
+.done{background:var(--tile);border-radius:28px;padding:48px;display:flex;flex-direction:column;gap:20px;align-items:center;text-align:center}
+.done h3{font-size:clamp(32px,5vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+
+footer{border-top:1px solid var(--line);background:var(--surface)}
+footer div{max-width:1024px;margin:0 auto;padding:32px 24px;display:flex;flex-direction:column;gap:12px;font-size:12px;line-height:1.6;color:var(--mute)}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 24px}
+footer a{text-decoration:none}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i,.btn,.seg,.opt{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <div class="brand"><i>H</i>Human Performance</div>
+    <nav aria-label="Sections">
+      <a href="#axes">Axes</a>
+      <a href="#offres">Offres</a>
+      <a href="#methode">Méthode</a>
+      <a href="#questions">Questions</a>
+      <a class="btn btn-sm" href="#candidature">Candidater</a>
+    </nav>
+  </div>
+</header>
+
+<section class="wrap stack center hero">
+  <div class="eyebrow">Coaching à distance</div>
+  <h1>Performance is built.</h1>
+  <p class="lead" style="font-size:clamp(20px,2.4vw,28px);line-height:1.25;letter-spacing:-.01em">Préparation physique pour les compétiteurs de tous sports. Pour progresser, ou pour revenir.</p>
+  <div class="hero-actions">
+    <a class="btn" href="#candidature">Candidater</a>
+    <a class="lnk" href="#offres">Voir les offres ›</a>
+  </div>
+  <div class="hero-tile" aria-hidden="true"><b>H</b><span>HUMAN PERFORMANCE™</span></div>
+</section>
+
+<section class="trust">
+  <div>
+    <span>Préparateur physique diplômé</span>
+    <span>Titulaire de la carte professionnelle</span>
+    <span>Entreprise déclarée</span>
+  </div>
+</section>
+
+<section id="axes" class="alt">
+  <div class="wrap stack center" style="gap:32px">
+    <h2>Deux axes de travail.</h2>
+    <p class="lead">Tous les sports de compétition. Un travail pour performer, un autre pour revenir de blessure.</p>
+    <div class="tiles">
+      <div class="tile">
+        <div class="tag"><i style="background:var(--red)"></i>Performance</div>
+        <div class="big">Performer dans ton sport.</div>
+        <div class="sub">Un programme construit autour de ta discipline</div>
+      </div>
+      <div class="tile dark">
+        <div class="tag"><i style="background:var(--cyan)"></i>Réathlétisation</div>
+        <div class="big">Revenir plus solide.</div>
+        <div class="sub">Reprise progressive après blessure</div>
+      </div>
+    </div>
+    <a class="lnk" href="#candidature">Candidater ›</a>
+  </div>
+</section>
+
+<section id="offres">
+  <div class="wrap stack center" style="gap:32px">
+    <h2>Deux accompagnements.</h2>
+    <div class="tracks" role="tablist" aria-label="Offres">
+      <button class="seg" type="button" role="tab" id="tabPerf" aria-selected="true" aria-controls="panelPerf">Performance</button>
+      <button class="seg" type="button" role="tab" id="tabRet" aria-selected="false" aria-controls="panelRet">Retour au jeu</button>
+    </div>
+
+    <article class="panel" id="panelPerf" role="tabpanel" aria-labelledby="tabPerf">
+      <div>
+        <div class="meta">12 semaines</div>
+        <h3>Progresser pour ta saison.</h3>
+        <p>Pour le compétiteur adulte (club, régional, national) qui veut gagner en vitesse, force, explosivité ou endurance.</p>
+      </div>
+      <div style="gap:24px">
+        <ul class="checks">
+          <li>Visio de bilan, tests de départ et d'arrivée</li>
+          <li>Programme individualisé dans une application de coaching</li>
+          <li>Planification autour de ton calendrier de compétition</li>
+          <li>Ajustements chaque semaine et messagerie</li>
+          <li>Bilan final avec les mêmes tests</li>
+        </ul>
+        <div class="price"><b>390 €</b><a class="btn" href="#candidature">Candidater</a></div>
+      </div>
+    </article>
+
+    <article class="panel dark" id="panelRet" role="tabpanel" aria-labelledby="tabRet" hidden>
+      <div>
+        <div class="meta">8 à 12 semaines</div>
+        <h3>Revenir à la compétition.</h3>
+        <p>Pour le compétiteur adulte qui reprend après une blessure, avec l'accord de son médecin ou de son kiné.</p>
+      </div>
+      <div style="gap:24px">
+        <ul class="checks">
+          <li>Visio de bilan et progression en phases</li>
+          <li>Vidéos de contrôle des gestes</li>
+          <li>Critères clairs pour retourner à l'entraînement, puis à la compétition</li>
+          <li>Ajustements chaque semaine et messagerie</li>
+          <li>Bilan final</li>
+        </ul>
+        <div class="price"><b>À partir de 290 €</b><a class="btn" href="#candidature">Candidater</a></div>
+      </div>
+    </article>
+
+    <p class="note">Le coaching accompagne la reprise de l'entraînement après accord médical. Il ne remplace ni ton médecin ni ton kiné.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap fit">
+    <div>
+      <h3>C'est pour toi si</h3>
+      <ul>
+        <li>Tu es compétiteur adulte et tu vises une échéance précise.</li>
+        <li>Tu veux un programme fait pour toi, pas un modèle.</li>
+        <li>Tu acceptes de te tester au départ et à la fin.</li>
+        <li>Tu reprends après une blessure, avec l'accord de ton médecin.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Ce n'est pas pour toi si</h3>
+      <ul class="no">
+        <li>Tu veux un suivi en salle, en présentiel.</li>
+        <li>Tu cherches un diagnostic ou une prise en charge médicale.</li>
+        <li>Tu n'as pas encore l'accord de ton médecin pour reprendre : on commence par là.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="methode">
+  <div class="wrap stack" style="gap:40px">
+    <h2 style="text-align:center">Comment ça marche.</h2>
+    <div class="acc-list">
+      <details class="steps" open><summary><span><small>01</small>Tu postules</span></summary><p>Huit questions sur ton sport, ton objectif de saison et ta santé.</p></details>
+      <details class="steps"><summary><span><small>02</small>On fait un appel</span></summary><p>15 minutes pour comprendre ton objectif, ton niveau actuel et tes contraintes. Je te dis franchement si l'accompagnement te convient.</p></details>
+      <details class="steps"><summary><span><small>03</small>Je prépare ton programme</span></summary><p>Bilan de départ avec des tests, puis un programme individualisé dans une application de coaching, calé sur ton calendrier de compétition.</p></details>
+      <details class="steps"><summary><span><small>04</small>Tu t'entraînes, je te suis</span></summary><p>Ajustements chaque semaine, messagerie, puis bilan final avec les mêmes tests qu'au départ.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap about">
+    <div>
+      <h2>Qui suis-je.</h2>
+      <p>Je m'appelle Arthur Estienne, préparateur physique. Titulaire d'une licence en entraînement sportif (parcours force), je prépare aujourd'hui un master 2 à Montpellier, en préparation physique et réathlétisation.</p>
+      <p>Je suis préparateur physique dans une structure de handball. Je travaille avec des athlètes qui visent la performance : je mesure, je programme, j'ajuste chaque semaine.</p>
+    </div>
+  </div>
+</section>
+
+<section id="questions">
+  <div class="wrap stack" style="gap:40px">
+    <h2 style="text-align:center">Questions.</h2>
+    <div class="acc-list">
+      <details><summary>Comment se passe un coaching à distance ?</summary><p>Un bilan en visio, puis ton programme dans une application de coaching. On échange par messagerie et je l'ajuste chaque semaine.</p></details>
+      <details><summary>Quel matériel me faut-il ?</summary><p>Le programme s'adapte à ce dont tu disposes : salle, maison ou extérieur. Tu l'indiques dans le formulaire.</p></details>
+      <details><summary>Et si je suis blessé ?</summary><p>Si tu reprends après une blessure, il me faut l'accord de ton médecin ou de ton kiné. Le coaching accompagne la reprise, il ne remplace pas les soins.</p></details>
+      <details><summary>Comment se passe le paiement ?</summary><p>Après l'appel, si l'accompagnement te convient, je t'envoie un lien de paiement sécurisé. Tarifs : 390 € pour Performance (12 semaines), à partir de 290 € pour Retour au jeu.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="candidature" class="alt">
+  <div class="wrap wrap-narrow stack" style="gap:36px">
+    <div class="stack center" style="gap:14px">
+      <h2>Candidater.</h2>
+      <p class="lead">Quelques questions sur ton sport, ton objectif et ta santé. Je te réponds sous 48 heures pour fixer un appel de 15 minutes.</p>
+    </div>
+    <div class="card center" style="align-items:center;gap:20px">
+      <a class="btn" id="applyLink" href="https://tally.so/r/PdMAxB" target="_blank" rel="noopener">Remplir ma candidature ›</a>
+      <p class="fine">Environ 3 minutes. Tes informations servent uniquement à étudier ta candidature. Si tu n'as pas encore l'accord de ton médecin, on en parlera d'abord à l'appel.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <span>Arthur Estienne, entrepreneur individuel · SIRET 108 714 395 00010 · Carte professionnelle n° 03425ED0453 · TVA non applicable, art. 293 B du CGI</span>
+    <nav><a href="#">CGV</a><a href="#">Mentions légales</a><a href="#">Politique de confidentialité</a><span>Human Performance™</span></nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var tabPerf=document.getElementById("tabPerf"),tabRet=document.getElementById("tabRet");
+  var panelPerf=document.getElementById("panelPerf"),panelRet=document.getElementById("panelRet");
+  function setOffer(perf){
+    tabPerf.setAttribute("aria-selected",perf?"true":"false");
+    tabRet.setAttribute("aria-selected",perf?"false":"true");
+    panelPerf.hidden=!perf;panelRet.hidden=perf;
+  }
+  tabPerf.addEventListener("click",function(){setOffer(true);});
+  tabRet.addEventListener("click",function(){setOffer(false);});
+
+})();
+</script>
+
+</body>
+</html>
